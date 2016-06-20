@@ -34,6 +34,8 @@ Copy, paste, save, or write down your admin credentials. Then you can press `Ctr
 
 ## Usage
 
+Before running any `docker-compose` commands, make sure you are in the `lair-docker` directory.
+
 When you are ready to start up Lair again, run: 
 ```bash
 $ docker-compose start
@@ -61,10 +63,10 @@ $ docker-compose stop
 
 ### Bash aliases
 
-Here are some of the bash profile aliases I created for Lair, just replace [REPO PATH] with the absolute location of this repo:
+Here are some of the bash profile aliases I created for Lair, just replace [lair-docker] with your absolute path:
 ```bash
-alias start-lair="cd [REPO PATH] && docker-compose start && docker logs lair_ngrok | awk '/ngrok.io/ {x=\$0} END{print x}'"
-alias stop-lair="cd [REPO PATH] && docker-compose stop"
+alias start-lair="cd [lair-docker] && docker-compose start && docker logs lair_ngrok | awk '/ngrok.io/ {x=\$0} END{print x}'"
+alias stop-lair="cd [lair-docker] && docker-compose stop"
 ```
 
 Here is the alias I use to start docker shell on OS X:
