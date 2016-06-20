@@ -1,0 +1,14 @@
+0.0.0.0:11013 {
+  tls /root/cert.pem /root/key.pem
+  proxy /api {$LAIRAPI_PORT_11015_TCP_ADDR}:{$LAIRAPI_PORT_11015_TCP_PORT}
+  proxy / {$LAIR_PORT_11014_TCP_ADDR}:{$LAIR_PORT_11014_TCP_PORT} {
+    websocket
+  }
+}
+
+0.0.0.0:11012 {
+  proxy /api {$LAIRAPI_PORT_11015_TCP_ADDR}:{$LAIRAPI_PORT_11015_TCP_PORT}
+  proxy / {$LAIR_PORT_11014_TCP_ADDR}:{$LAIR_PORT_11014_TCP_PORT} {
+    websocket
+  }
+}
