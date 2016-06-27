@@ -1,11 +1,13 @@
 version: '2'
 services:
         lair:
+                hostname: lair
                 container_name: lair_lair
                 build:
                         context: ./app/
                         dockerfile: Dockerfile
-                network_mode: "bridge"
+                ports:
+                        - "11014:11014"
                 restart: always
                 links:
                         - lairdb
@@ -13,11 +15,13 @@ services:
                         - lairdb
                         - lairsetup
         lairapi:
+                hostname: lairapi
                 container_name: lair_api
                 build:
                         context: ./api/
                         dockerfile: Dockerfile
-                network_mode: "bridge"
+                ports:
+                        - "11015:11015"
                 restart: always
                 links:
                         - lairdb
@@ -25,6 +29,7 @@ services:
                         - lairdb
                         - lairsetup
         caddy:
+                hostname: caddy
                 container_name: lair_caddy
                 build:
                         context: ./proxy/
@@ -39,25 +44,24 @@ services:
                         - lair
                         - lairapi
                         - lairsetup
-                network_mode: "bridge"
                 restart: always
         ngrok:
+                hostname: ngrok
                 container_name: lair_ngrok
                 build:
                         context: ./ngrok/
                         dockerfile: Dockerfile
                 links:
                         - caddy
-                network_mode: "bridge"
                 volumes:
                         - ./scripts:/root/scripts
                 environment:
                         HTTP_LISTENER: caddy:11012
         lairdb:
+                hostname: lairdb
                 container_name: lair_db
                 image: mongo
                 restart: always
-                network_mode: "bridge"
                 volumes:
                         - /usr/local/mongodb/data/db:/data/db
                 ports:
@@ -72,5 +76,4 @@ services:
                         - lairdb
                 volumes:
                         - ./scripts:/scripts
-                network_mode: "bridge"
                 entrypoint: '/scripts/wait-for-it.sh lairdb:27017 -- mongo lairdb:27017/admin /scripts/db_init.js'
