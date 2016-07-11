@@ -53,8 +53,6 @@ services:
                         dockerfile: Dockerfile
                 links:
                         - caddy
-                volumes:
-                        - ./scripts:/root/scripts
                 environment:
                         HTTP_LISTENER: caddy:11012
         lairdb:
@@ -66,8 +64,9 @@ services:
                         - /usr/local/mongodb/data/db:/data/db
                 ports:
                         - "27017:27017"
-                entrypoint: ["/usr/bin/mongod", "--dbpath=/data/db", "--quiet", "--nounixsocket", "--replSet", "rs0", "--logpath", "/var/log/mongodb.log", "--logappend"]
+                entrypoint: ["/usr/bin/mongod", "--dbpath=/data/db", "--quiet", "--replSet", "rs0", "--logpath", "/var/log/mongodb.log", "--logappend"]
         lairsetup:
+                hostname: lairsetup
                 container_name: lair_setup
                 image: mongo
                 links:
@@ -76,4 +75,4 @@ services:
                         - lairdb
                 volumes:
                         - ./scripts:/scripts
-                entrypoint: '/scripts/wait-for-it.sh lairdb:27017 -- mongo lairdb:27017/admin /scripts/db_init.js'
+                entrypoint: '/scripts/wait-for-it.sh lairdb:27017 -s -- mongo lairdb:27017/admin /scripts/db_init.js'

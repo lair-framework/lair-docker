@@ -13,4 +13,4 @@ ENV PORT 11014
 ENV MONGO_URL=mongodb://lairdb:27017/lair
 ENV MONGO_OPLOG_URL=mongodb://lairdb:27017/local
 
-CMD node /root/app/bundle/main.js
+CMD sleep 4 && node /root/app/bundle/main.js

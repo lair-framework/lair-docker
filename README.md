@@ -7,7 +7,7 @@ This was inspired and built off the initial work done by [b00stfr3ak](https://gi
 
 ## Installation
 
-First make sure you have docker installed. Here are [OS X](https://docs.docker.com/mac/step_one/) and [Linux](https://docs.docker.com/linux/step_one/) instructions.
+First make sure you have docker installed. Here are [OS X Beta](https://docs.docker.com/docker-for-mac/) and [Linux](https://docs.docker.com/linux/step_one/) instructions.
 
 ```bash
 $ git clone https://github.com/ryhanson/lair-docker.git
@@ -67,9 +67,4 @@ Here are some of the bash profile aliases I created for Lair, just replace [lair
 ```bash
 alias start-lair="cd [lair-docker] && docker-compose start && docker logs lair_ngrok | awk '/ngrok.io/ {x=\$0} END{print x}'"
 alias stop-lair="cd [lair-docker] && docker-compose stop"
-```
-
-Here is the alias I use to start docker shell on OS X:
-```bash
-alias start-docker="/Applications/Docker/Docker\ Quickstart\ Terminal.app/Contents/Resources/Scripts/start.sh"
 ```

@@ -2,13 +2,20 @@ var conf = {
     _id: "rs0",
     members: [{
         _id: 1,
-        host: "localhost:27017"
+        host: "lairdb:27017"
     }]
 };
 
-if(!db.isMaster().ismaster) {
+try {
+    var rsConf = rs.conf();
+
+    if (rsConf.members[0].host !== "lairdb:27017") {
+        rs.initiate(conf);
+        print("Replication set initialized.");
+    } else {
+        print("Replicate set has already been initialized.");
+    }
+} catch (err) {
     rs.initiate(conf);
-    printjson("Replication set initialized.");
-} else {
-    print("Replicate set has already been initialized.");
+    print("Replication set initialized.");
 }
