@@ -4,7 +4,7 @@ RUN apk --no-cache add tini git \
     && apk --no-cache add --virtual devs tar curl && rm -rf /var/cache/apk/*
 
 #Install Caddy Server, and All Middleware
-RUN curl "https://caddyserver.com/download/build?os=linux&arch=amd64&features=cors,git,hugo,ipfilter,jsonp,jwt,mailout,prometheus,realip,search,upload" \
+RUN curl "https://caddyserver.com/download/build?os=linux&arch=amd64&features=git,hugo,ipfilter,jwt,mailout,prometheus,realip,search" \
     | tar --no-same-owner -C /usr/bin/ -xz caddy
 
 #Remove build devs
