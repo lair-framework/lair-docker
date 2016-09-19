@@ -6,8 +6,6 @@ services:
                 build:
                         context: ./app/
                         dockerfile: Dockerfile
-                ports:
-                        - "11014:11014"
                 restart: always
                 links:
                         - lairdb
@@ -20,8 +18,6 @@ services:
                 build:
                         context: ./api/
                         dockerfile: Dockerfile
-                ports:
-                        - "11015:11015"
                 restart: always
                 links:
                         - lairdb
@@ -62,8 +58,6 @@ services:
                 restart: always
                 volumes:
                         - /usr/local/mongodb/data/db:/data/db
-                ports:
-                        - "27017:27017"
                 entrypoint: ["/usr/bin/mongod", "--dbpath=/data/db", "--quiet", "--replSet", "rs0", "--logpath", "/var/log/mongodb.log", "--logappend"]
         lairsetup:
                 hostname: lairsetup
