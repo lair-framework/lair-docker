@@ -7,6 +7,9 @@ RUN unzip ngrok-stable-linux-amd64.zip -d /bin && \
 
 RUN mkdir -p /var/log/ngrok && chmod 755 /var/log/ngrok
 
-CMD /bin/ngrok http -log stdout -log-level debug -log-format term $HTTP_LISTENER | \
+CMD if [ $ENABLED -eq 1 ]; then \
+    /bin/ngrok http -log stdout -log-level debug -log-format term $HTTP_LISTENER | \
     tee /var/log/ngrok/debug.log | \
-    awk -v date="$(date +"%Y/%m/%d %T") Lair is available at" '/URL:https:/ {gsub("URL:","",$10); print date, $10}'
+    awk -v date="$(date +"%Y/%m/%d %T") Lair is available at" '/URL:https:/ {gsub("URL:","",$10); print date, $10}'; \
+    fi
+    

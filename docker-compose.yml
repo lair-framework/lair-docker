@@ -51,6 +51,7 @@ services:
                         - caddy
                 environment:
                         HTTP_LISTENER: caddy:11012
+                        ENABLED: 0
         lairdb:
                 hostname: lairdb
                 container_name: lair_db

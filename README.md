@@ -26,7 +26,6 @@ lair_caddy   | 0.0.0.0:11013
 lair_caddy   | 0.0.0.0:11012
 lair_setup exited with code 0
 lair_lair    | Created admin@localhost with password 1234abcd5678ef
-lair_ngrok   | 2016/06/20 06:29:41 Lair is available at https://abcd1234.ngrok.io
 lair_api     | 2016/06/20 06:29:42 Listening on 0.0.0.0:11015
 ```
 
@@ -41,14 +40,21 @@ When you are ready to start up Lair again, run:
 $ docker-compose start
 ```
 
-To find the ngrok URL, run:
+To stop all Lair services, run:
 ```bash
-$ docker logs lair_ngrok
+$ docker-compose stop
 ```
 
-If you do not want Lair to be exposed publicly, run:
+To use ngrok, set `ENABLED: 1` in docker-compose.yml and run:
 ```bash
-$ docker-compose stop ngrok
+$ docker-compose up ngrok
+```
+
+Once you've done this, you can press `Ctrl+C` and use `start` and `stop` like below. The `up` command has to be ran any time you update the docker-compose.yml file.
+
+NOTE: If you used this Docker envrionment before the `ENABLED` flag was added, you'll need to rebuild ngrok by running:
+```bash
+$ docker-compose build ngrok
 ```
 
 To re-start ngrok after it has been stopped, run:
@@ -56,15 +62,12 @@ To re-start ngrok after it has been stopped, run:
 $ docker-compose start ngrok
 ```
 
-To stop all Lair services, run:
+To find the ngrok URL after running `start`, you can run:
 ```bash
-$ docker-compose stop
+$ docker logs lair_ngrok
 ```
 
-### Bash aliases
-
-Here are some of the bash profile aliases I created for Lair, just replace [lair-docker] with your absolute path:
+To stop ngrok, run:
 ```bash
-alias start-lair="cd [lair-docker] && docker-compose start && docker logs lair_ngrok | awk '/ngrok.io/ {x=\$0} END{print x}'"
-alias stop-lair="cd [lair-docker] && docker-compose stop"
+$ docker-compose stop ngrok
 ```
