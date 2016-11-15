@@ -1,10 +1,10 @@
-FROM node:0.10.41
+FROM node:latest
 
 EXPOSE 11014
 
 WORKDIR /root/app
-RUN curl -SLO "https://github.com/lair-framework/lair/releases/download/v2.4.1/lair-v2.4.1-linux-amd64.tar.gz" \
-    && tar -zxf lair-v2.4.1-linux-amd64.tar.gz \
+RUN curl -SLO "https://github.com/lair-framework/lair/releases/download/v2.5.0/lair-v2.5.0-linux-amd64.tar.gz" \
+    && tar -zxf lair-v2.5.0-linux-amd64.tar.gz \
     && cd bundle/programs/server \
     && npm i
 
