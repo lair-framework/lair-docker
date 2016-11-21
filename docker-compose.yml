@@ -50,8 +50,9 @@ services:
                 links:
                         - caddy
                 environment:
-                        HTTP_LISTENER: caddy:11012
+                        HTTPS_LISTENER: caddy:11013
                         ENABLED: 0
+                        AUTH_TOKEN: "[Find your auth token at: https://dashboard.ngrok.com/auth]"
         lairdb:
                 hostname: lairdb
                 container_name: lair_db
