@@ -9,7 +9,7 @@ This was inspired and built off the initial work done by [b00stfr3ak](https://gi
 
 First make sure you have docker installed. Here are [OS X Beta](https://docs.docker.com/docker-for-mac/) and [Linux](https://docs.docker.com/linux/step_one/) instructions. 
 
-To install docker-compose in Linux (in case you have problem with version 1.5.2) use the following [guide](https://docs.docker.com/compose/install/). You may also need to create a symbolic link
+To install docker-compose in Linux (in case you have problem with version 1.5.2 of the repos) use the following [guide](https://docs.docker.com/compose/install/). You may also need to create a symbolic link
 
 ```bash
 $ ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
