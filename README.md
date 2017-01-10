@@ -7,7 +7,7 @@ This was inspired and built off the initial work done by [b00stfr3ak](https://gi
 
 ## Installation
 
-First make sure you have docker installed. Here are [OS X Beta](https://docs.docker.com/docker-for-mac/) and [Linux](https://docs.docker.com/linux/step_one/) instructions.
+First make sure you have docker installed. Here are [OS X Beta](https://docs.docker.com/docker-for-mac/) and [Linux](https://docs.docker.com/linux/step_one/) instructions. To install docker-compose in Linux (in case you have problem with version 1.5.2) use the following [guide](https://docs.docker.com/compose/install/) (you may also need to create a symbolic link with ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose)
 
 ```bash
 $ git clone https://github.com/ryhanson/lair-docker.git
