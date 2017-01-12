@@ -59,7 +59,7 @@ services:
                 image: mongo
                 restart: always
                 volumes:
-                        - /usr/local/mongodb/data/db:/data/db
+                        - $HOME/.lair/mongodb/data/db:/data/db
                 entrypoint: ["/usr/bin/mongod", "--dbpath=/data/db", "--quiet", "--replSet", "rs0", "--logpath", "/var/log/mongodb.log", "--logappend"]
         lairsetup:
                 hostname: lairsetup

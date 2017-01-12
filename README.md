@@ -52,6 +52,21 @@ $ docker-compose up ngrok
 
 Once you've done this, you can press `Ctrl+C` and use `start` and `stop` like below. The `up` command has to be ran any time you update the docker-compose.yml file.
 
+### Moving existing MongoDB database
+
+If you previously used this environment with /usr/local/mongodb configured as the volume for MongoDB, 
+you'll need to copy your database files to the new volume location. You can do so by running:
+
+```bash
+$ mkdir ~/.lair
+$ cp -R /usr/local/mongodb ~/.lair/
+```
+
+This update was made due to issues with Docker on OS X and not having proper permissions to create the /usr/local/mongodb folder. 
+If you haven't used this Docker environment, you won't have a database to move and you can ignore the instructions above.
+
+### Using ngrok
+
 NOTE: If you used this Docker envrionment before the `ENABLED` flag was added, you'll need to rebuild ngrok by running:
 ```bash
 $ docker-compose build ngrok
