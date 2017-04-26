@@ -24,6 +24,8 @@ services:
                 depends_on:
                         - lairdb
                         - lairsetup
+                volumes:
+                        - $HOME/.lair/files:/files
         caddy:
                 hostname: caddy
                 container_name: lair_caddy
