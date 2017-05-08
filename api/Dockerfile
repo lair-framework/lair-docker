@@ -8,10 +8,12 @@ WORKDIR /plugins
 RUN rm .keep
 RUN for file in *.go;                                         \
         do                                                    \
-                echo "Making so for $file"  &&                \
-                so=$(echo $file | sed 's/\.go$/\.so/g') &&    \
-                go build -v -buildmode=plugin -o $so $file && \
-                rm $file ;                                    \
+                if [ -e "$file" ]; then                       \
+                        echo "Making so for $file"  &&                \
+                        so=$(echo $file | sed 's/\.go$/\.so/g') &&    \
+                        go build -v -buildmode=plugin -o $so $file && \
+                        rm $file ;                                    \
+                fi                                            \
         done
 WORKDIR /root
 ENV TRANSFORM_DIR=/plugins
