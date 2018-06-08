@@ -62,7 +62,7 @@ services:
                 restart: always
                 volumes:
                         - $HOME/.lair/mongodb/data/db:/data/db
-                entrypoint: ["/usr/bin/mongod", "--dbpath=/data/db", "--quiet", "--replSet", "rs0", "--logpath", "/var/log/mongodb.log", "--logappend"]
+                entrypoint: ["/usr/bin/mongod", "--dbpath=/data/db", "--bind_ip_all", "--quiet", "--replSet=rs0", "--logpath=/var/log/mongodb.log", "--logappend"]
         lairsetup:
                 hostname: lairsetup
                 container_name: lair_setup
