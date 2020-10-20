@@ -6,7 +6,8 @@ WORKDIR /root/app
 RUN apt-get update
 RUN apt-get install -y bsdtar && ln -sf $(which bsdtar) $(which tar)
 
-RUN curl https://install.meteor.com/ | sh
+# from https://github.com/lair-framework/lair-docker/pull/21/commits/b174836f8a882cca57036cdc8bce30854316f24b
+RUN curl RUN curl https://install.meteor.com/?release=1.7.0.5 | sh
 RUN curl -SLO "https://github.com/lair-framework/lair/releases/download/v2.5.0/lair-v2.5.0-linux-amd64.tar.gz" \
     && tar -zxf lair-v2.5.0-linux-amd64.tar.gz \
     && cd bundle/programs/server \
